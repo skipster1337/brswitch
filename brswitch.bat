@@ -1,14 +1,14 @@
 :: brswitch - Brick Rigs Automatic Branch Switcher
-:: v2.1.0
+:: v2.2.0
 :: skipster1337 - 2023
 
 :: Set this to your Steam path (where the Steam program is located), without quotes.
 :: Default: set steam_path=C:\Program Files (x86)\Steam
-set steam_path=D:\Steam
+set steam_path=C:\Program Files (x86)\Steam
 
 :: Set this to your steamapps\common\ folder (where the Brick Rigs folder is located), without quotes.
 :: Default: set br_path=C:\Program Files (x86)\Steam\steamapps\common
-set br_path=D:\Steam\steamapps\common
+set br_path=C:\Program Files (x86)\Steam\steamapps\common
 
 :: Do not edit anything below or the script might break.
 
@@ -16,7 +16,7 @@ set br_path=D:\Steam\steamapps\common
 @echo off
 
 :: Console window title
-set version=v2.1.0
+set version=v2.2.0
 title brswitch %version% - skipster1337 - 2023
 
 :: Change location to path where BR is located for file operations
@@ -106,6 +106,13 @@ exit /b
 
 :: Prepares the folders and appmanifests for branch switching
 :create_structure
+if exist ..\br_*.acf (
+  echo.
+  echo You have set up your folder structure already. If you want to remake it, back up your current Brick Rigs files somewhere else and reinstall.
+  pause
+  goto menu
+)
+echo.
 echo Is your Brick Rigs branch currently set to stable or legacy?
 echo Press S or L accordingly.
 choice /C sl
@@ -136,7 +143,7 @@ ren ..\appmanifest_552100.acf br_%old_branch%.acf
 echo.
 echo brswitch will open Steam to continue the process.
 pause
-start %steam_path%\steam.exe
+start "Steam" "%steam_path%\steam.exe"
 echo Now you have to open Steam and download the %new_branch% branch. Only continue once the download is finished.
 pause
 echo brswitch will close Steam again in order to continue the process.
@@ -169,15 +176,25 @@ exit /b
 
 :: Creates the experimental branch
 :create_experimental
+set reset_reason=start_create_experimental
+goto reset
+:start_create_experimental
 if not exist ..\br_*.acf (
-    echo.
-    echo You haven't set up the folder structure yet! To set up experimental, you need legacy or stable first.
-    pause
-    goto menu
+  echo.
+  echo You haven't set up the folder structure yet! To set up experimental, you need legacy or stable first.
+  pause
+  goto menu
 )
+if exist "br_experimental" (
+  echo.
+  echo You already have experimental installed. No need to set it up again.
+  pause
+  goto menu
+)
+echo.
 echo brswitch will open Steam. Continue?
 pause
-start %steam_path%\steam.exe
+start "Steam" "%steam_path%\steam.exe"
 echo Open Steam and download the experimental branch. Only continue once the download is finished.
 pause
 echo brswitch will close Steam again in order to continue the process.
@@ -204,6 +221,7 @@ goto menu
 
 :: The branch switcher code itself
 :switcher
+set reset_reason=switch_branch
 
 :: Reset already selected branch before switching, otherwise the branch switcher won't know what to do
 :: This is done using some simple guessing with if statements
@@ -211,6 +229,7 @@ goto menu
 
 :: Cursed code, not touching this
 
+:reset
 if exist "Brick Rigs" (
   if exist ..\br_*.acf (
     if not exist "br_stable" (
@@ -236,20 +255,20 @@ if exist "Brick Rigs" (
     goto menu
   )
 ) else (
-  goto switch_branch
+  goto %reset_reason%
 )
 
 :: Renames the folders to their codenames in order to reset the selected branch
 :reset_branch
 echo.
 echo Current branch is %branch_to_reset%.
-echo Resetting selected branch before switching.
+echo Resetting selected branch before proceeding.
 echo.
 echo Renaming the "Brick Rigs" folder to "br_%branch_to_reset%".
 ren "Brick Rigs" br_%branch_to_reset%
 echo Renaming "appmanifest_552100.acf" to "br_%branch_to_reset%.acf".
 ren ..\appmanifest_552100.acf br_%branch_to_reset%.acf
-goto :switch_branch
+goto %reset_reason%
 
 :: Renames the codenamed folders to the name expected by Steam in order to select the branch
 :switch_branch
@@ -285,7 +304,7 @@ pause
 exit /b
 
 :startsteam
-start %steam_path%\steam.exe
+start "Steam" "%steam_path%\steam.exe"
 goto terminate
 
 :errorhandler
