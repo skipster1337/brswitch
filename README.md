@@ -11,7 +11,11 @@ brswitch works by renaming the game folder and .appmanifest file for the each br
 
 **Note:** an easy way to find your `steamapps\common` directory is to right click on Brick Rigs in your Steam library, choose to browse the local files and go up a level to `common`. That's where you have to save the script.  
 
-Afterwards you should open the file in a text editor (like Notepad) and change the Brick Rigs and Steam paths to the ones that match yours. By default Steam is installed to `C:\Program Files (x86)\Steam` and if you installed it elsewhere you already know what to do. 
+Afterwards:
+- Open the file in a text editor (like Notepad)
+- Change the Brick Rigs and Steam paths to the ones that match yours. 
+
+**Note:** By default Steam is installed to `C:\Program Files (x86)\Steam`. If you installed it elsewhere you will have to set a different path.
 
 ![Paths](paths.png)
 
@@ -23,7 +27,14 @@ brswitch will then rename the selected branch to its codename and proceed with d
 Switching branches is simple and needs no explanation, simply select the option to switch to the required branch.
 
 # 'Historical' version support
-soon:tm:
+soon™
 
 # I don't like this. How do I get rid of it?
-If you have decided to remove brswitch you can do so by simply removing the script, backing up your mods from the game folders, deleting the `Brick Rigs` and `br_<branch>` folders from `steamapps\common`, then `appmanifest_552100.acf` and `br_<branch>.acf` from `steamapps`. If you've never used a historical version your saves are not affected.
+If you have decided to remove brswitch you can do so by following these steps:
+- Remove the `brswitch.bat` script from `steamapps\common`
+- Back up your mods from the game folders
+- Delete the `Brick Rigs` and `br_<branch>` folders from `steamapps\common`
+- Go up a level to the `steamapps` folder
+- Delete `appmanifest_552100.acf` and `br_<branch>.acf` from `steamapps`.  
+  
+Currently if you use brswitch your saved creations and game configuration are not affected, however in the future historical version switching will implement separate Saved folders to avoid configuration mismatching.
