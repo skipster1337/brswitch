@@ -121,6 +121,7 @@ exit /b
 
 :: Creates the folders and appmanifests for branch switching
 :create_structure
+:: Don't set up the folder structure again if it is already created
 if exist ..\br_*.acf (
   echo.
   echo You have set up your folder structure already. If you want to remake it, back up your current Brick Rigs files somewhere else and reinstall.
