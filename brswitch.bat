@@ -1,30 +1,42 @@
 :: brswitch - Brick Rigs Automatic Branch Switcher
-:: v2.2.0
+:: v2.2.1
 :: skipster1337 - 2023
+:: https://github.com/skipster1337/brswitch
 
-:: Set this to your Steam path (where the Steam program is located), without quotes.
-:: Default: set steam_path=C:\Program Files (x86)\Steam
+:: Set this to your Steam path (where the Steam program is located), without "quotes" and without a \slash\ at the end.
+:: Default:
+:: set steam_path=C:\Program Files (x86)\Steam
+:: Examples of custom paths:
+:: set steam_path=D:\Steam
+:: set steam_path=D:\Programs\Steam
 set steam_path=C:\Program Files (x86)\Steam
 
-:: Set this to your steamapps\common\ folder (where the Brick Rigs folder is located), without quotes.
-:: Default: set br_path=C:\Program Files (x86)\Steam\steamapps\common
+:: Set this to your steamapps\common\ folder (where the Brick Rigs folder is located), without "quotes" and without a \slash\ at the end
+:: Default:
+:: set br_path=C:\Program Files (x86)\Steam\steamapps\common
+:: Examples of custom paths:
+:: set br_path=D:\Steam\steamapps\common
+:: set br_path=E:\Games\SteamLibrary\steamapps\common
 set br_path=C:\Program Files (x86)\Steam\steamapps\common
 
 :: Do not edit anything below or the script might break.
+
 
 :: Don't display commands entered by script
 @echo off
 
 :: Console window title
-set version=v2.2.0
+set version=v2.2.1
 title brswitch %version% - skipster1337 - 2023
 
 :: Change location to path where BR is located for file operations
 cd %br_path%
 
+
 :: Title and warning
 echo.
 echo brswitch - Brick Rigs Automatic Branch Switcher %version%
+echo https://github.com/skipster1337/brswitch
 echo Message me on Discord: @skip#9831
 echo.
 echo NOTE:
@@ -51,6 +63,8 @@ goto %jumplabel%
 pause
 exit /b
 
+
+:: Menu used for choosing branch switcher actions
 :menu
 taskkill /t /f /im steam.exe 2>NUL
 taskkill /t /f /im BrickRigs.exe 2>NUL
@@ -104,7 +118,8 @@ goto %jumplabel%
 pause
 exit /b
 
-:: Prepares the folders and appmanifests for branch switching
+
+:: Creates the folders and appmanifests for branch switching
 :create_structure
 if exist ..\br_*.acf (
   echo.
@@ -116,25 +131,25 @@ echo.
 echo Is your Brick Rigs branch currently set to stable or legacy?
 echo Press S or L accordingly.
 choice /C sl
-echo.
 if errorlevel 0 (
   set jumplabel=errorhandler
 )
 if errorlevel 1 (
   set old_branch=stable
   set new_branch=legacy
-  set jumplabel=create
+  set jumplabel=start_create_structure
 )
 if errorlevel 2 (
   set old_branch=legacy
   set new_branch=stable
-  set jumplabel=create
+  set jumplabel=start_create_structure
 )
 goto %jumplabel%
 pause
 exit /b
 
-:create
+:start_create_structure
+echo.
 echo Setting up the %new_branch% branch.
 echo renaming the "Brick Rigs" folder to "br_%old_branch%".
 ren "Brick Rigs" br_%old_branch%
@@ -174,17 +189,22 @@ goto %jumplabel%
 pause
 exit /b
 
+
 :: Creates the experimental branch
+:: Reset branches before creating experimental to avoid broken files
 :create_experimental
 set reset_reason=start_create_experimental
 goto reset
+
 :start_create_experimental
+:: Don't set up experimental if folder structure is not set up yet
 if not exist ..\br_*.acf (
   echo.
   echo You haven't set up the folder structure yet! To set up experimental, you need legacy or stable first.
   pause
   goto menu
 )
+:: Don't set up experimental if already installed
 if exist "br_experimental" (
   echo.
   echo You already have experimental installed. No need to set it up again.
@@ -212,23 +232,21 @@ echo Done, experimental is set up. Continue to switch to the desired branch.
 pause
 goto menu
 
+
 :: Creates the historical branch (WIP)
 :create_historical
+echo.
 echo WIP.
 echo.
 pause
 goto menu
 
-:: The branch switcher code itself
-:switcher
-set reset_reason=switch_branch
 
 :: Reset already selected branch before switching, otherwise the branch switcher won't know what to do
 :: This is done using some simple guessing with if statements
 :: Order is stable, legacy, experimental, historical
 
 :: Cursed code, not touching this
-
 :reset
 if exist "Brick Rigs" (
   if exist ..\br_*.acf (
@@ -270,7 +288,13 @@ echo Renaming "appmanifest_552100.acf" to "br_%branch_to_reset%.acf".
 ren ..\appmanifest_552100.acf br_%branch_to_reset%.acf
 goto %reset_reason%
 
-:: Renames the codenamed folders to the name expected by Steam in order to select the branch
+
+:: The branch switcher code itself
+:switcher
+:: Reset branches before switching to avoid broken files
+set reset_reason=switch_branch
+goto reset
+
 :switch_branch
 :: Don't switch if selected branch does not exist
 if not exist "br_%branch%" (
@@ -303,6 +327,8 @@ goto %jumplabel%
 pause
 exit /b
 
+
+:: Misc functions
 :startsteam
 start "Steam" "%steam_path%\steam.exe"
 goto terminate
