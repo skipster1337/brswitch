@@ -21,3 +21,9 @@ The first thing brswitch will ask you is the branch you have currently installed
 brswitch will then rename the selected branch to its codename and proceed with downloading the other branch, and will then give you the option to set up the experimental branch (which is also later accessible in the menu).  
 
 Switching branches is simple and needs no explanation, simply select the option to switch to the required branch.
+
+# 'Historical' version support
+soon:tm:
+
+# I don't like this. How do I get rid of it?
+If you have decided to remove brswitch you can do so by simply removing the script, backing up your mods from the game folders, deleting the `Brick Rigs` and `br_<branch>` folders from `steamapps\common`, then `appmanifest_552100.acf` and `br_<branch>.acf` from `steamapps`. If you've never used a historical version your saves are not affected.
