@@ -17,6 +17,7 @@ while True:
     print("[L] Switch to legacy")
     print("[Q] Quit")
 
+    # Convert inserted characters to uppercase for case insensitivity
     choice = input("Enter your choice: ").upper()
 
     if choice == "S":
