@@ -6,10 +6,11 @@ import sys
 
 config = configparser.ConfigParser()
 
+
 # Determine the path to the bundled configuration file
 if getattr(sys, "frozen", False):
     # Running as a standalone executable
-    base_path = Path(sys.executable).parent
+    base_path = Path(sys._MEIPASS)  # type: ignore
 else:
     # Running as a standard .py file
     base_path = Path(__file__).parent
