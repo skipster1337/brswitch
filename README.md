@@ -4,6 +4,26 @@ I lost a big portion of the previous .py file somehow so I just nuked everything
 The first working release of the rewrite version will only offer basic branch switching functionality, but more features will be added in the future.  
 This readme file is also a placeholder. I will rewrite it with the first release.
 
+# how to install
+
+You can set up brswitch in multiple ways, the easiest one is just running it directly with Python.
+- [Install the latest version of Python for Windows](https://www.python.org/downloads/windows/)
+- Clone this repository or download it by clicking on the green "Code" button and going to "Download ZIP"
+- Unpack the `.zip` file with 7-Zip or WinRAR. Make sure you're unpacking it and not running it directly from the archive!
+- Once you've unpacked the archive, open `brswitch.py` (or simply `brswitch` if you have file extensions disabled, *not* `brswitch.conf` or `brswitch.spec`)
+
+If this seems all too complicated for you, there will be a ready-to-run .exe file in the Releases section that you can download. The reason I recommend that you run it directly is because Python files are human-readable and therefore you can see what the script does.
+
+# manual building
+If you want to compile the .exe yourself, all you need to do is download the repository and follow these steps:
+- Install Python
+- Install PyInstaller using pip: `pip install pyinstaller`
+- Run `build.bat`. It will compile `brswitch.exe` based on the included `.spec` file, drop the binary in the `dist` folder, and create a log file named `build.log`.
+
+# linux (proton) support
+I am trying my best to make brswitch OS-agnostic and therefore compatible with any operating system that runs Python. However, I am not doing any active testing on Linux, so if you're interested in this project and run Brick Rigs under Proton, I encourage you to try this script and let me know if it works.
+
+
 # todo
 
 ## for v3.0s
