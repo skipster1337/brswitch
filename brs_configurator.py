@@ -2,15 +2,25 @@
 from pathlib import Path
 import shutil
 import configparser
+import sys
 
 config = configparser.ConfigParser()
 
+# Determine the path to the bundled configuration file
+if getattr(sys, "frozen", False):
+    # Running as a standalone executable
+    base_path = Path(sys.executable).parent
+else:
+    # Running as a standard .py file
+    base_path = Path(__file__).parent
+
+# The location of the example config
+conf = base_path / "brswitch.conf"
+
 # The user's home directory
 home = Path.home()
-# The location of the example config
-conf = "brswitch.conf"
 # The location where the user config should be: ~/brswitch.conf
-brs_userconf = home / conf
+brs_userconf = home / "brswitch.conf"
 
 
 # Initiate the configuration

@@ -32,16 +32,17 @@ def brs_reset():
             if brpath.is_dir():
                 # Bad ending: Modified structure found, active branch found of unknown type
                 print(
-                    "The last switched branch is unknown, a modified folder structure was found, and an unknown currently active branch was also found. Sorry, but your brswitch install might be broken. Refer to the GitHub page for more info."
+                    "\nThe last switched branch is unknown, a modified folder structure was found, and an unknown currently active branch was also found. Sorry, but your brswitch install might be broken. Refer to the GitHub page for more info."
                 )
                 input("Press Enter to exit.")
                 exit()
         # If modified files are not found
         else:
             print(
-                "The last switched branch is unknown, and a modified folder structure was not found. This usually means that you haven't set up your brswitch folder structure yet."
+                "\nThe last switched branch is unknown, and a modified folder structure was not found. This usually means that you haven't set up your brswitch folder structure yet."
             )
-            input("Press Enter to continue.")
+            input("Press Enter to exit.")
+            exit()
     # Last switched branch in config is not empty
     else:
         # Check for "Brick Rigs" folder in the game path
@@ -70,7 +71,7 @@ def brs_reset():
         else:
             # If active branch is found in config, but no "Brick Rigs" folder is found, bail out
             print(
-                f"The last switched branch found in the config is {last_branch}, but no active branch folder was found in the game path. Sorry, but your brswitch install might be broken. Refer to the GitHub page for more info."
+                f"\nThe last switched branch found in the config is {last_branch}, but no active branch folder was found in the game path. Sorry, but your brswitch install might be broken. Refer to the GitHub page for more info."
             )
             input("Press Enter to exit.")
             exit()
