@@ -11,8 +11,8 @@ This readme file is also a placeholder. I will rewrite it with the first release
 - Write a simple readme showing how to use the program
 - Clean up the code to use less redundant variables where possible
 - Write better comments
-- Make sure the script is cross-platform and does not rely on any OS features
-Essentially first working version, don't expect much beyond basic functionality
+- Make sure the script is cross-platform and does not rely on any OS features  
+  Essentially first working version, don't expect much beyond basic functionality
 
 ## for v3.1
 
@@ -20,8 +20,8 @@ Essentially first working version, don't expect much beyond basic functionality
 - Cover more edge cases within the script and use the readme to explain the errors
 - Add support for branch creation within the script
 - Add support for automatically closing and starting Steam for convenience
-- Add support for switching to experimental branch
-Feature parity with first version written in batch
+- Add support for switching to experimental branch  
+  Feature parity with first version written in batch
 
 ## for v3.2
 
