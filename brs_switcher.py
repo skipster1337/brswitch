@@ -1,6 +1,7 @@
 from brs_resetter import brs_game_path
 from brs_configurator import brs_writelast
 
+# TODO: i have to comment this abomination better
 
 # Branch switcher function
 def brs_switcher(branch):

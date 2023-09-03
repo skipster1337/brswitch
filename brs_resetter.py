@@ -28,6 +28,7 @@ def brs_reset():
         # If modified files are found
         if matching_modified:
             # Also check for "Brick Rigs" folder which indicates that branches were switched at some point, which means your brswitch is FUBAR'd
+            # If no "Brick Rigs" folder is found, it should mean that the branches don't need resetting (each branch is properly codenamed) and it will let you pass
             if brpath.is_dir():
                 # Bad ending: Modified structure found, active branch found of unknown type
                 print(
@@ -35,7 +36,6 @@ def brs_reset():
                 )
                 input("Press Enter to exit.")
                 exit()
-            # If no "Brick Rigs" folder is found, it should mean that the branches don't need resetting and it will let you pass
         # If modified files are not found
         else:
             print(
@@ -68,7 +68,7 @@ def brs_reset():
             # Reset active branch value in the config
             brs_resetconf()
         else:
-            # If active branch is found in config, but no "Brick Rigs" folder is found, bail
+            # If active branch is found in config, but no "Brick Rigs" folder is found, bail out
             print(
                 f"The last switched branch found in the config is {last_branch}, but no active branch folder was found in the game path. Sorry, but your brswitch install might be broken. Refer to the GitHub page for more info."
             )
