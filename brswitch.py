@@ -1,5 +1,6 @@
 from brs_configurator import brs_initconf
 from brs_resetter import brs_reset
+from brs_switcher import brs_switcher
 
 # Title
 print("brswitch v3.0rw - made by skipster1337")
@@ -21,12 +22,13 @@ while True:
     choice = input("Enter your choice: ").upper()
 
     if choice == "S":
-        print("\nSwitching to stable.")
         # Attempt to reset active branch before switching
         brs_reset()
+        # Run the branch switcher with the respective branch name
+        brs_switcher("stable")
     elif choice == "L":
-        print("\nSwitching to legacy.")
         brs_reset()
+        brs_switcher("legacy")
     elif choice == "Q":
         print("Goodbye.")
         break  # Exit the menu loop

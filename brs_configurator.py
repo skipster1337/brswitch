@@ -36,3 +36,15 @@ def brs_resetconf():
     with open(brs_userconf, "w") as config_file:
         config.write(config_file)
     print("Branch reset successfully.")
+
+
+# Write last switched branch value in the config
+def brs_writelast(branch):
+    # Load the configuration file
+    config.read(brs_userconf)
+    # Write the value for the last branch using the information from the switcher
+    config["history"]["last_branch"] = branch
+    # Write the changes back to the configuration file
+    with open(brs_userconf, "w") as config_file:
+        config.write(config_file)
+    print("Branch switched successfully.")
