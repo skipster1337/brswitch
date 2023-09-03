@@ -1,11 +1,17 @@
-from brs_resetter import brs_game_path
-from brs_configurator import brs_writelast
+from pathlib import Path
+from brs_configurator import brs_writelast,brs_userconf, config
 
 # TODO: i have to comment this abomination better
 
 # Branch switcher function
 def brs_switcher(branch):
     print(f"\nSwitching to {branch}.")
+    # Open the config file
+    config.read(brs_userconf)
+    # Read game path from config
+    game_path = config["paths"]["game_path"]
+    # Convert game_path string to Path object
+    brs_game_path = Path(game_path)
     # Check if required branch folder exists
     old_br_folder = f"br_{branch}"
     old_br_path = brs_game_path / old_br_folder

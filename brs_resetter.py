@@ -4,14 +4,6 @@ from pathlib import Path
 # Load the config path from the configurator, the branch config resetter, and the config variable used for interacting with configparser
 from brs_configurator import brs_userconf, brs_resetconf, config
 
-# Open the config file
-config.read(brs_userconf)
-# Read game path from config
-game_path = config["paths"]["game_path"]
-# Convert game_path string to Path object
-brs_game_path = Path(game_path)
-# Get the path for the "Brick Rigs" folder itself
-brpath = brs_game_path / "Brick Rigs"
 
 # TODO: also check for broken manifests in future versions for more edge cases
 # For now this is just a basic working version
@@ -19,6 +11,14 @@ brpath = brs_game_path / "Brick Rigs"
 
 # Reset branches before proceeding with operations
 def brs_reset():
+    # Open the config file
+    config.read(brs_userconf)
+    # Read game path from config
+    game_path = config["paths"]["game_path"]
+    # Convert game_path string to Path object
+    brs_game_path = Path(game_path)
+    # Get the path for the "Brick Rigs" folder itself
+    brpath = brs_game_path / "Brick Rigs"
     # Read last switched branch from history
     last_branch = config["history"]["last_branch"]
     # If last branch is unknown, check for modified folder structure to avoid problems
