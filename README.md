@@ -1,4 +1,4 @@
-# brswitch
+# brswitch v3.0s
 
 Currently if you want to play multiple versions of your games on Steam, you typically have to either constantly switch branches and redownload, backup / restore, or even manage multiple Steam installs.
 
@@ -45,7 +45,7 @@ steam_path = C:\Program Files (x86)\Steam
 game_path = C:\Program Files (x86)\Steam\steamapps\common
 ```
 
-You have to set `steam_path` to the folder where Steam is installed, and `game_path` to the `steamapps\common` folder where Brick Rigs is located, if you changed their locations from the defaults.  
+You have to set `steam_path` to the folder where Steam is installed, and `game_path` to the `steamapps\common` folder where Brick Rigs is located, if you changed their locations from the defaults.
 
 For example, my paths are set like so:
 
@@ -69,7 +69,7 @@ With all that out of the way, all you need to do now is make sure your branches 
 - Go to `steamapps\common` where Brick Rigs is installed.
 - Rename the `Brick Rigs` folder to `br_<branch>`, where `<branch>` is the name of your currently installed Brick Rigs branch. If it's the regular branch, name it `br_stable`. If it's Legacy, name it `br_legacy`.
 - Go up a folder to `steamapps`.
-- Rename `appmanifest_552100.acf` to `br_<branch>.acf` (`br_stable.acf` for the regular branch and `br_legacy.acf` for Legacy).  
+- Rename `appmanifest_552100.acf` to `br_<branch>.acf` (`br_stable.acf` for the regular branch and `br_legacy.acf` for Legacy).
 
 ### Branch 2
 
@@ -79,29 +79,34 @@ With all that out of the way, all you need to do now is make sure your branches 
 - Rename the newly downloaded `Brick Rigs` folder to the respective `br_<branch>` that you just downloaded.
 - Rename `appmanifest_552100.acf` to `br_<branch>.acf`.
 
-If done correctly, your folder structure should look something like this:  
+If done correctly, your folder structure should look something like this:
 
 `steamapps\common`:
+
 ```
 📂 br_legacy
 📂 br_stable
 ```
+
 `steamapps`:
+
 ```
 📄 br_legacy.acf
 📄 br_stable.acf
 ```
 
 ### Done, brswitch should be ready to use now! Quit Steam, open brswitch and try switching branches.
+
 If configured correctly, brswitch should succeed in switching the Stable and Legacy branches installed side-by-side.
 
 # Removal
+
 If you have decided to remove brswitch, you can easily do so by deleting the program from where you placed it, removing the `brswitch.conf` configuration file from your user folder, and finally, renaming your folders and `.appmanifest`s or backing up your Brick Rigs mods and reinstalling.
 Sorry if brswitch brought you trouble.
 
 # Manual building
 
-If you are dubious and want to compile the .exe yourself, all you need to do is download the repository and follow these steps:
+If you feel dubious and want to compile the .exe yourself, all you need to do is download the repository and follow these steps:
 
 - Install Python
 - Install PyInstaller using pip: `pip install pyinstaller`
@@ -112,16 +117,17 @@ If you are dubious and want to compile the .exe yourself, all you need to do is 
 I am trying my best to make brswitch OS-agnostic and therefore compatible with any operating system that runs Python. However, I am not doing any active testing on Linux, so if you're interested in this project and run Brick Rigs under Proton, I encourage you to try this script and let me know if it works.
 
 # Using brswitch for another project
+
 If you feel inspired by this project and want to use it for yourself, you can! I try my best to comment the Python code as cleanly as possible, so it should be trivial to adapt it for any other Steam game or make modifications to the script. Just make sure to credit me if you do it.
 
 # To do
 
 ## for v3.0s
 
-- Write a simple readme showing how to use the program
-- Clean up the code to use less redundant variables where possible
-- Write better comments
-- Make sure the script is cross-platform and does not rely on any OS features
+- ~~Write a simple readme showing how to use the program~~
+- ~~Clean up the code to use less redundant variables where possible~~
+- ~~Write better comments~~
+- ~~Make sure the script is cross-platform and does not rely on any OS features~~
 
 Essentially first working version, don't expect much beyond basic functionality
 

@@ -3,7 +3,7 @@ from brs_resetter import brs_reset
 from brs_switcher import brs_switcher
 
 # Title
-print("brswitch v3.0rw - made by skipster1337")
+print("brswitch v3.0s - made by skipster1337")
 print("https://github.com/skipster1337/brswitch\n")
 
 # Initialize brswitch configuration

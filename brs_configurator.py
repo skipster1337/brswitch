@@ -28,7 +28,7 @@ brs_userconf = home / "brswitch.conf"
 def brs_initconf():
     # If the config file exists, do nothing
     if brs_userconf.is_file():
-        print(f"Configurator: The file {brs_userconf} exists.")
+        print(f"Configuration: The file {brs_userconf} exists.")
     # If the config file doesn't exist, copy the default one to the home directory
     else:
         print(
