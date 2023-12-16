@@ -2,7 +2,11 @@ from pathlib import Path
 import glob
 
 # Load the game path variables and the branch config resetter.
-from brsConfig import brsConfig_ReadLastBranch, brsConfig_ReadGameLocation, brsConfig_ResetConf
+from brsConfig import (
+    brsConfig_ReadLastBranch,
+    brsConfig_ReadGameLocation,
+    brsConfig_ResetConf,
+)
 
 
 # TODO: also check for broken manifests in future versions for more edge cases
@@ -12,6 +16,8 @@ from brsConfig import brsConfig_ReadLastBranch, brsConfig_ReadGameLocation, brsC
 # Reset branches before proceeding with operations
 brsConfig_LastBranch = brsConfig_ReadLastBranch()
 brsConfig_GameLocation, brsConfig_GamePath = brsConfig_ReadGameLocation()
+
+
 def brsReset():
     # If last branch is unknown, check for modified folder structure to avoid problems
     if brsConfig_LastBranch == "":
@@ -55,7 +61,9 @@ def brsReset():
             # Get the path to the old appmanifest
             old_appmanifest_path = appmanifest_location / "appmanifest_552100.acf"
             # Get the path to the new appmanifest
-            new_appmanifest_path = appmanifest_location / f"br_{brsConfig_LastBranch}.acf"
+            new_appmanifest_path = (
+                appmanifest_location / f"br_{brsConfig_LastBranch}.acf"
+            )
             # Rename active appmanifest to its respective codename
             old_appmanifest_path.rename(new_appmanifest_path)
             # Reset active branch value in the config

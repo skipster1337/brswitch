@@ -7,12 +7,13 @@ from brsConfig import brsConfig_ReadSteamLocation
 # Determine system type
 brsProcess_System = system()
 
+
 def brsProcess_Kill(process_name):
     process_found = False
 
     for process in psutil.process_iter(["pid", "name"]):
-        if process.info["name"] == process_name: # type: ignore
-            pid = process.info["pid"] # type: ignore
+        if process.info["name"] == process_name:  # type: ignore
+            pid = process.info["pid"]  # type: ignore
             try:
                 # Attempt to terminate the process
                 process = psutil.Process(pid)
@@ -33,6 +34,7 @@ def brsProcess_Kill(process_name):
     # Raise an exception if the process was not found
     if not process_found:
         print(f"Process {process_name} not found.")
+
 
 def brsProcess_StartSteam():
     brsConfig_SteamLocation, brsConfig_SteamExe = brsConfig_ReadSteamLocation()

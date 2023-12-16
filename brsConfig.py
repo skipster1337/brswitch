@@ -60,7 +60,7 @@ def brsConfig_WriteLastBranch(branch):
         config.write(config_file)
     print("Branch switched successfully.")
 
-    
+
 # Read last switched branch from config file
 def brsConfig_ReadLastBranch():
     # Load the configuration file
@@ -70,7 +70,7 @@ def brsConfig_ReadLastBranch():
     # Return the variable
     return brsConfig_LastBranch
 
-    
+
 # Read Steam location from config file
 def brsConfig_ReadSteamLocation():
     # Load the configuration file
