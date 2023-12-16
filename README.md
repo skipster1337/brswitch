@@ -40,19 +40,19 @@ In there, you will see two lines under the `[paths]` section:
 ```
 [paths]
 ; Set this to the folder where Steam is installed
-steam_path = C:\Program Files (x86)\Steam
+steam_location = C:\Program Files (x86)\Steam
 ; Set this to your steamapps\common folder
-game_path = C:\Program Files (x86)\Steam\steamapps\common
+game_location = C:\Program Files (x86)\Steam\steamapps\common
 ```
 
-You have to set `steam_path` to the folder where Steam is installed, and `game_path` to the `steamapps\common` folder where Brick Rigs is located, if you changed their locations from the defaults.
+You have to set `steam_location` to the folder where Steam is installed, and `game_location` to the `steamapps\common` folder where Brick Rigs is located, if you changed their locations from the defaults.
 
 For example, my paths are set like so:
 
 ```
 [paths]
-steam_path = D:\Steam
-game_path = D:\Steam\steamapps\common
+steam_location = D:\Steam
+game_location = D:\Steam\steamapps\common
 ```
 
 _(This is just an example, your custom paths are probably different so don't copy mine)_
